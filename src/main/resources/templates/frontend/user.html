@@ -1,0 +1,49 @@
+<html layout:decorate="~{frontend/layouts/default_layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+</head>
+<body>
+    <div layout:fragment="content">
+
+        <div class="container-fluid">
+
+            <div class="row py-4">
+                <div class="col-md-6"><h2>User List</h2></div>
+                <div class="col-md-6 text-right">
+                    <a href="/adduser" class="btn btn-info">Add new</a>
+                </div>
+            </div>
+
+            <div class="row px-2">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <th>ID</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Manage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user: ${list}">
+                            <td th:text="${user.id}"></td>
+                            <td th:text="${user.firstName}"></td>
+                            <td th:text="${user.lastName}"></td>
+                            <td th:text="${user.emailName}"></td>
+                            <td style="width: 180px;">
+                                <a th:href="@{/edituser/}+${user.id}" class="btn btn-warning">Edit</a>
+                                <a th:href="@{/deleteuser/}+${user.id}" class="btn btn-danger" onclick="return confirm('Confirmed to delete this item ?')">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
